@@ -1,64 +1,236 @@
 <!doctype html>
-<html lang="ja"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#b91c1c"><link rel="manifest" href="manifest.webmanifest">
-<title>危険物乙4 合格トレーナー</title>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#991b1b">
+<link rel="manifest" href="manifest.webmanifest">
+<title>危険物乙4 合格トレーナー V2</title>
 <style>
-:root{--r:#b91c1c;--bg:#f5f4ef;--card:#fff;--txt:#1f2937;--mut:#6b7280;--line:#e5e7eb;--fs:16px}
-body.dark{--bg:#111827;--card:#1f2937;--txt:#f9fafb;--mut:#cbd5e1;--line:#374151}
+:root{--r:#b91c1c;--r2:#991b1b;--bg:#f5f4ef;--card:#fff;--txt:#1f2937;--mut:#6b7280;--line:#e5e7eb;--ok:#15803d;--ng:#c2410c;--gold:#d97706;--fs:16px}
+body.dark{--bg:#0f172a;--card:#1e293b;--txt:#f8fafc;--mut:#cbd5e1;--line:#334155}
 *{box-sizing:border-box}html{font-size:var(--fs)}body{margin:0;background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif}
-header{position:sticky;top:0;z-index:5;background:var(--r);color:#fff;padding:12px 14px}.top{display:flex;justify-content:space-between;align-items:center}h1{font-size:1.15rem;margin:0}.sub{font-size:.74rem}
-main{max-width:720px;margin:auto;padding:14px 14px 90px}.card{background:var(--card);border-radius:16px;padding:17px;margin:12px 0;box-shadow:0 3px 15px #0002}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}button{font:inherit;border:0;border-radius:12px;padding:13px;cursor:pointer}
-.mode{background:var(--card);color:var(--txt);border:1px solid var(--line);text-align:left;min-height:85px}.mode b{display:block}.mode span,.muted{font-size:.78rem;color:var(--mut)}
-.primary{background:var(--r);color:white;font-weight:800}.secondary{background:var(--line);color:var(--txt)}.icon{background:#ffffff22;color:white;padding:8px}
+header{position:sticky;top:0;z-index:10;background:linear-gradient(135deg,var(--r2),var(--r));color:#fff;padding:12px 14px;box-shadow:0 2px 8px #0003}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}h1{font-size:1.13rem;margin:0}.sub{font-size:.72rem;opacity:.9}.headBtns{display:flex;gap:5px}
+main{max-width:760px;margin:auto;padding:14px 14px 100px}.card{background:var(--card);border-radius:17px;padding:17px;margin:12px 0;box-shadow:0 3px 16px #0002}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.dash{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.metric{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}.metric b{font-size:1.15rem;display:block}.metric span{font-size:.7rem;color:var(--mut)}
+button{font:inherit;border:0;border-radius:12px;padding:13px;cursor:pointer}.mode{background:var(--card);color:var(--txt);border:1px solid var(--line);text-align:left;min-height:87px}.mode b{display:block}.mode span,.muted{font-size:.78rem;color:var(--mut)}
+.primary{background:var(--r);color:#fff;font-weight:800}.secondary{background:var(--line);color:var(--txt)}.icon{background:#ffffff22;color:#fff;padding:8px}
 .row{display:flex;justify-content:space-between;align-items:center;gap:8px}.badge{padding:5px 9px;border-radius:99px;background:#fee2e2;color:#991b1b;font-size:.75rem;font-weight:800}
-.progress{height:10px;background:var(--line);border-radius:99px;overflow:hidden}.bar{height:100%;background:var(--r)}.question{font-size:1.25rem;line-height:1.55;font-weight:800;margin:15px 0}
-.choice{width:100%;margin:7px 0;text-align:left;background:var(--card);color:var(--txt);border:2px solid var(--line);display:flex;gap:10px}.correct{border-color:#15803d;background:#dcfce7;color:#14532d}.wrong{border-color:#c2410c;background:#ffedd5;color:#7c2d12}
-.explain{border-left:5px solid var(--r);background:#fff7ed;color:#431407;padding:13px;border-radius:8px;margin-top:14px;line-height:1.6}.hidden{display:none!important}
-.score{font-size:2.8rem;font-weight:900;color:var(--r);text-align:center}.stats{width:100%;border-collapse:collapse}.stats td{padding:9px;border-bottom:1px solid var(--line)}
-.star{font-size:1.4rem;background:transparent;color:#f59e0b;padding:3px}.notice{background:#eff6ff;color:#1e3a8a;padding:10px;border-radius:9px;font-size:.78rem;line-height:1.5}
-@media(max-width:440px){.grid{grid-template-columns:1fr}}
-</style></head><body>
-<header><div class="top"><div><h1>危険物乙4 合格トレーナー</h1><div class="sub">100問・模試・復習・お気に入り・オフライン</div></div><div><button class="icon" onclick="fontSize()">文字</button><button class="icon" onclick="dark()">◐</button></div></div></header>
+.progress{height:10px;background:var(--line);border-radius:99px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,var(--r2),var(--r))}
+.question{font-size:1.22rem;line-height:1.55;font-weight:800;margin:15px 0}.choice{width:100%;margin:7px 0;text-align:left;background:var(--card);color:var(--txt);border:2px solid var(--line);display:flex;gap:10px}.choice.correct{border-color:var(--ok);background:#dcfce7;color:#14532d}.choice.wrong{border-color:var(--ng);background:#ffedd5;color:#7c2d12}
+.explain{border-left:5px solid var(--r);background:#fff7ed;color:#431407;padding:13px;border-radius:8px;margin-top:14px;line-height:1.65}.hidden{display:none!important}
+.score{font-size:2.8rem;font-weight:900;color:var(--r);text-align:center}.stats{width:100%;border-collapse:collapse}.stats td,.stats th{padding:9px;border-bottom:1px solid var(--line);text-align:left}.star{font-size:1.4rem;background:transparent;color:#f59e0b;padding:3px}
+.notice{background:#eff6ff;color:#1e3a8a;padding:10px;border-radius:9px;font-size:.78rem;line-height:1.5}.searchbox{width:100%;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--txt);font:inherit}
+.resultItem{border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0;background:var(--card)}.flash{min-height:270px;display:flex;flex-direction:column;justify-content:center;text-align:center;border:2px dashed var(--line);border-radius:16px;padding:20px}.flash .front{font-size:1.25rem;font-weight:800}.flash .back{margin-top:15px;line-height:1.65}
+.goalrow{display:flex;gap:8px;align-items:center}.goalrow input{width:85px;padding:9px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--txt)}
+.history{max-height:320px;overflow:auto}.smallbtn{padding:8px 10px;font-size:.8rem}.sectionTitle{display:flex;justify-content:space-between;align-items:center}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.dash{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="top">
+ <div><h1>危険物乙4 合格トレーナー V2</h1><div class="sub">暗記カード・検索・学習時間・連続記録・模試履歴</div></div>
+ <div class="headBtns"><button class="icon" onclick="fontSize()">文字</button><button class="icon" onclick="dark()">◐</button></div>
+</div>
+</header>
 <main>
 <section id="home">
-<div class="card"><div class="row"><div><b>学習状況</b><div id="summary" class="muted"></div></div><span id="today" class="badge"></span></div><div class="progress" style="margin-top:12px"><div id="homebar" class="bar"></div></div><div class="row" style="margin-top:9px"><span id="rate" class="muted"></span><span id="wrongInfo" class="muted"></span></div><button id="install" class="primary hidden" style="width:100%;margin-top:10px">ホーム画面に追加</button></div>
-<div class="grid">
-<button class="mode" onclick="start('daily')"><b>🔥 今日の10問</b><span>ランダム出題</span></button>
-<button class="mode" onclick="start('mock')"><b>📝 35問模試</b><span>60分・科目別判定</span></button>
-<button class="mode" onclick="showCat()"><b>📚 分野別問題</b><span>3分野から選択</span></button>
-<button class="mode" onclick="start('wrong')"><b>🔁 間違い復習</b><span id="wrongCount"></span></button>
-<button class="mode" onclick="start('book')"><b>★ お気に入り</b><span id="bookCount"></span></button>
-<button class="mode" onclick="start('all')"><b>💯 全100問</b><span>すべて学習</span></button>
-<button class="mode" onclick="stats()"><b>📊 成績・苦手分析</b><span>分野別正答率</span></button>
-<button class="mode" onclick="settings()"><b>⚙ 設定</b><span>文字・画面・履歴</span></button>
-</div><div class="notice" style="margin-top:14px">学習用オリジナル問題です。受験前は最新の公式情報も確認してください。</div>
+ <div class="card">
+  <div class="row"><div><b>今日の学習</b><div id="summary" class="muted"></div></div><span id="today" class="badge"></span></div>
+  <div class="progress" style="margin-top:12px"><div id="homebar" class="bar"></div></div>
+  <div class="dash">
+   <div class="metric"><b id="rate">0%</b><span>総合正答率</span></div>
+   <div class="metric"><b id="streak">0日</b><span>連続学習</span></div>
+   <div class="metric"><b id="minutes">0分</b><span>累計学習</span></div>
+   <div class="metric"><b id="mockBest">-</b><span>模試最高</span></div>
+  </div>
+  <div class="goalrow" style="margin-top:12px"><span class="muted">1日の目標</span><input id="goalInput" type="number" min="1" max="200" value="10"><span class="muted">問</span><button class="smallbtn secondary" onclick="saveGoal()">保存</button></div>
+  <button id="install" class="primary hidden" style="width:100%;margin-top:10px">ホーム画面に追加</button>
+ </div>
+
+ <div class="grid">
+  <button class="mode" onclick="start('daily')"><b>🔥 今日の10問</b><span>ランダム出題</span></button>
+  <button class="mode" onclick="start('mock')"><b>📝 35問模試</b><span>60分・科目別判定</span></button>
+  <button class="mode" onclick="showCat()"><b>📚 分野別問題</b><span>3分野から選択</span></button>
+  <button class="mode" onclick="start('wrong')"><b>🔁 間違い復習</b><span id="wrongCount"></span></button>
+  <button class="mode" onclick="start('book')"><b>★ お気に入り</b><span id="bookCount"></span></button>
+  <button class="mode" onclick="start('all')"><b>💯 全100問</b><span>すべて学習</span></button>
+  <button class="mode" onclick="flashStart()"><b>🎴 暗記カード</b><span>問題→答えをタップ確認</span></button>
+  <button class="mode" onclick="searchPage()"><b>🔎 問題検索</b><span>言葉から問題を検索</span></button>
+  <button class="mode" onclick="stats()"><b>📊 成績・苦手分析</b><span>分野別正答率</span></button>
+  <button class="mode" onclick="mockHistory()"><b>🏆 模試履歴</b><span>過去の判定を確認</span></button>
+  <button class="mode" onclick="settings()"><b>⚙ 設定・バックアップ</b><span>履歴の保存と復元</span></button>
+  <button class="mode" onclick="start('recommend')"><b>🧠 おすすめ復習</b><span>正答率の低い問題を優先</span></button>
+ </div>
+ <div class="notice" style="margin-top:14px">Version2は、今までの成績・間違い・お気に入りをそのまま引き継ぎます。</div>
 </section>
-<section id="cat" class="hidden"><div class="card"><h2>分野を選択</h2><button class="choice" onclick="startCat('法令')">法令（35問）</button><button class="choice" onclick="startCat('物理化学')">物理・化学（25問）</button><button class="choice" onclick="startCat('性質消火')">性質・消火（40問）</button><button class="secondary" onclick="home()">戻る</button></div></section>
-<section id="quiz" class="hidden"><div class="card"><div class="row"><span id="badge" class="badge"></span><div><b id="timer"></b> <span id="count" class="muted"></span></div></div><div class="progress" style="margin-top:10px"><div id="qbar" class="bar"></div></div><div class="row"><span></span><button id="star" class="star" onclick="bookmark()">☆</button></div><div id="q" class="question"></div><div id="choices"></div><div id="feed" class="hidden"></div><button id="next" class="primary hidden" style="width:100%;margin-top:14px" onclick="next()">次へ</button><button class="secondary" style="width:100%;margin-top:8px" onclick="quit()">中断</button></div></section>
-<section id="result" class="hidden"><div class="card"><h2 style="text-align:center">結果</h2><div id="score" class="score"></div><div id="msg" style="text-align:center;font-weight:800"></div><table id="resultTable" class="stats"></table><button class="primary" style="width:100%;margin-top:14px" onclick="home()">ホームへ</button></div></section>
-<section id="stats" class="hidden"><div class="card"><h2>成績・苦手分析</h2><table id="statsTable" class="stats"></table><h3>苦手問題</h3><div id="weak" class="muted"></div><button class="primary" style="width:100%;margin-top:14px" onclick="home()">戻る</button></div></section>
-<section id="settings" class="hidden"><div class="card"><h2>設定</h2><button class="secondary" onclick="dark()">ダークモード</button><button class="secondary" onclick="fontSize()">文字サイズ</button><button class="secondary" style="width:100%;margin-top:15px" onclick="exportData()">成績を書き出す</button><button class="secondary" style="width:100%;margin-top:8px" onclick="resetData()">成績をリセット</button><button class="primary" style="width:100%;margin-top:14px" onclick="home()">戻る</button></div></section>
-</main><script src="questions.js"></script>
+
+<section id="cat" class="hidden"><div class="card"><h2>分野を選択</h2>
+ <button class="choice" onclick="startCat('法令')">法令（35問）</button>
+ <button class="choice" onclick="startCat('物理化学')">物理・化学（25問）</button>
+ <button class="choice" onclick="startCat('性質消火')">性質・火災予防・消火（40問）</button>
+ <button class="secondary" onclick="home()">戻る</button></div></section>
+
+<section id="quiz" class="hidden"><div class="card">
+ <div class="row"><span id="badge" class="badge"></span><div><b id="timer"></b> <span id="count" class="muted"></span></div></div>
+ <div class="progress" style="margin-top:10px"><div id="qbar" class="bar"></div></div>
+ <div class="row"><span></span><button id="star" class="star" onclick="bookmark()">☆</button></div>
+ <div id="q" class="question"></div><div id="choices"></div><div id="feed" class="hidden"></div>
+ <button id="next" class="primary hidden" style="width:100%;margin-top:14px" onclick="next()">次へ</button>
+ <button class="secondary" style="width:100%;margin-top:8px" onclick="quit()">中断</button>
+</div></section>
+
+<section id="result" class="hidden"><div class="card">
+ <h2 style="text-align:center">結果</h2><div id="score" class="score"></div><div id="msg" style="text-align:center;font-weight:800;margin-bottom:12px"></div>
+ <table id="resultTable" class="stats"></table><button class="primary" style="width:100%;margin-top:14px" onclick="home()">ホームへ</button>
+</div></section>
+
+<section id="stats" class="hidden"><div class="card">
+ <h2>成績・苦手分析</h2><table id="statsTable" class="stats"></table>
+ <h3>苦手問題 TOP10</h3><div id="weak" class="muted"></div>
+ <button class="primary" style="width:100%;margin-top:14px" onclick="start('recommend')">おすすめ復習を始める</button>
+ <button class="secondary" style="width:100%;margin-top:8px" onclick="home()">戻る</button>
+</div></section>
+
+<section id="flash" class="hidden"><div class="card">
+ <div class="row"><span class="badge">暗記カード</span><span id="flashCount" class="muted"></span></div>
+ <div id="flashCard" class="flash" onclick="flipFlash()"><div id="flashFront" class="front"></div><div id="flashBack" class="back hidden"></div></div>
+ <div class="row" style="margin-top:12px"><button class="secondary" onclick="flashPrev()">前へ</button><button class="primary" onclick="flipFlash()">答えを見る</button><button class="secondary" onclick="flashNext()">次へ</button></div>
+ <button class="secondary" style="width:100%;margin-top:8px" onclick="home()">終了</button>
+</div></section>
+
+<section id="search" class="hidden"><div class="card">
+ <h2>問題検索</h2><input id="searchInput" class="searchbox" placeholder="例：ガソリン、指定数量、消火" oninput="doSearch()">
+ <div id="searchResults"></div><button class="secondary" style="width:100%;margin-top:12px" onclick="home()">戻る</button>
+</div></section>
+
+<section id="history" class="hidden"><div class="card">
+ <h2>模試履歴</h2><div id="historyList" class="history"></div><button class="secondary" style="width:100%;margin-top:12px" onclick="home()">戻る</button>
+</div></section>
+
+<section id="settings" class="hidden"><div class="card">
+ <h2>設定・バックアップ</h2>
+ <button class="secondary" onclick="dark()">ダークモード</button>
+ <button class="secondary" onclick="fontSize()">文字サイズ</button>
+ <button class="secondary" style="width:100%;margin-top:15px" onclick="exportData()">成績を書き出す</button>
+ <label class="secondary" style="display:block;text-align:center;width:100%;margin-top:8px;padding:13px;border-radius:12px;cursor:pointer">成績を読み込む<input id="importFile" type="file" accept="application/json" class="hidden" onchange="importData(event)"></label>
+ <button class="secondary" style="width:100%;margin-top:8px" onclick="resetData()">成績をリセット</button>
+ <button class="primary" style="width:100%;margin-top:14px" onclick="home()">戻る</button>
+</div></section>
+</main>
+
+<script src="questions.js"></script>
 <script>
-const $=s=>document.querySelector(s),ids=['home','cat','quiz','result','stats','settings'];let list=[],pos=0,done=false,res=[],mode='',sec=0,tick=null,promptEvent=null;
-let st=Object.assign({a:{},wrong:[],book:[],day:'',today:0,dark:false,font:0},JSON.parse(localStorage.getItem('otsu4-final')||'{}'));
-function save(){localStorage.setItem('otsu4-final',JSON.stringify(st))}function show(x){ids.forEach(i=>$('#'+i).classList.toggle('hidden',i!==x));scrollTo(0,0)}
-function shuffle(a){return [...a].sort(()=>Math.random()-.5)}function d(){return new Date().toLocaleDateString('ja-JP')}function touch(){if(st.day!==d()){st.day=d();st.today=0}}
+const $=s=>document.querySelector(s);
+const ids=['home','cat','quiz','result','stats','flash','search','history','settings'];
+let list=[],pos=0,answered=false,res=[],mode='',sec=0,tick=null,promptEvent=null,startAt=0,flashList=[],flashPos=0,flashFlipped=false;
+
+const base={a:{},wrong:[],book:[],day:'',today:0,dark:false,font:0,goal:10,studySeconds:0,studyDays:[],mockHistory:[]};
+let old=JSON.parse(localStorage.getItem('otsu4-final')||'{}');
+let st=Object.assign({},base,old,JSON.parse(localStorage.getItem('otsu4-v2')||'{}'));
+function save(){localStorage.setItem('otsu4-v2',JSON.stringify(st));localStorage.setItem('otsu4-final',JSON.stringify(st))}
+function show(x){ids.forEach(i=>$('#'+i).classList.toggle('hidden',i!==x));scrollTo(0,0)}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function dateKey(){return new Date().toISOString().slice(0,10)}
+function touch(){
+ let now=dateKey();
+ if(st.day!==now){st.day=now;st.today=0}
+ if(!st.studyDays.includes(now))st.studyDays.push(now);
+}
+function calcStreak(){
+ let set=new Set(st.studyDays),d=new Date(),n=0;
+ for(;;){let k=d.toISOString().slice(0,10);if(set.has(k)){n++;d.setDate(d.getDate()-1)}else break}
+ return n
+}
 function prefs(){document.body.classList.toggle('dark',st.dark);document.documentElement.style.setProperty('--fs',st.font==1?'18px':st.font==2?'20px':'16px')}
-function dark(){st.dark=!st.dark;save();prefs()}function fontSize(){st.font=(st.font+1)%3;save();prefs()}
-function start(m){touch();mode=m;if(m==='daily')list=shuffle(QUESTIONS).slice(0,10);if(m==='all')list=[...QUESTIONS];if(m==='wrong'){list=QUESTIONS.filter(q=>st.wrong.includes(q.id));if(!list.length)return alert('間違い問題はありません')}if(m==='book'){list=QUESTIONS.filter(q=>st.book.includes(q.id));if(!list.length)return alert('お気に入りはありません')}if(m==='mock')list=shuffle([...shuffle(QUESTIONS.filter(q=>q.category==='法令')).slice(0,15),...shuffle(QUESTIONS.filter(q=>q.category==='物理化学')).slice(0,10),...shuffle(QUESTIONS.filter(q=>q.category==='性質消火')).slice(0,10)]);begin()}
-function startCat(c){mode='cat';list=shuffle(QUESTIONS.filter(q=>q.category===c));begin()}function begin(){pos=0;res=[];sec=mode==='mock'?3600:0;show('quiz');timer();render()}
-function timer(){clearInterval(tick);if(mode!=='mock'){$('#timer').textContent='';return}upTimer();tick=setInterval(()=>{sec--;upTimer();if(sec<=0){clearInterval(tick);finish()}},1000)}function upTimer(){$('#timer').textContent=Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0')}
-function render(){done=false;let q=list[pos];$('#badge').textContent=q.category;$('#count').textContent=(pos+1)+'/'+list.length;$('#qbar').style.width=(pos/list.length*100)+'%';$('#star').textContent=st.book.includes(q.id)?'★':'☆';$('#q').textContent=q.question;$('#feed').className='hidden';$('#next').classList.add('hidden');$('#choices').innerHTML='';['A','B','C','D'].forEach((x,i)=>{let b=document.createElement('button');b.className='choice';b.innerHTML='<b>'+x+'</b><span>'+q.choices[i]+'</span>';b.onclick=()=>answer(i);$('#choices').appendChild(b)})}
-function answer(i){if(done)return;done=true;touch();st.today++;let q=list[pos],ok=i===q.answer;res.push({cat:q.category,ok,id:q.id});st.a[q.id]??={r:0,t:0};st.a[q.id].t++;if(ok)st.a[q.id].r++;if(ok)st.wrong=st.wrong.filter(x=>x!==q.id);else if(!st.wrong.includes(q.id))st.wrong.push(q.id);[...$('#choices').children].forEach((b,j)=>{b.disabled=true;if(j===q.answer)b.classList.add('correct');if(j===i&&!ok)b.classList.add('wrong')});$('#feed').className='explain';$('#feed').innerHTML='<b>'+(ok?'⭕ 正解':'❌ 不正解')+'</b><br>正解：'+q.choices[q.answer]+'<br>'+q.explanation;$('#next').textContent=pos===list.length-1?'結果を見る':'次へ';$('#next').classList.remove('hidden');save()}
-function next(){pos++;pos>=list.length?finish():render()}function bookmark(){let id=list[pos].id;st.book=st.book.includes(id)?st.book.filter(x=>x!==id):[...st.book,id];save();$('#star').textContent=st.book.includes(id)?'★':'☆'}
-function quit(){if(confirm('中断しますか？'))home()}function finish(){clearInterval(tick);show('result');let c=res.filter(x=>x.ok).length,p=res.length?Math.round(c/res.length*100):0,pass=true,rows='';['法令','物理化学','性質消火'].forEach(cat=>{let a=res.filter(x=>x.cat===cat);if(a.length){let r=a.filter(x=>x.ok).length,z=Math.round(r/a.length*100);if(mode==='mock'&&z<60)pass=false;rows+='<tr><td>'+cat+'</td><td>'+r+'/'+a.length+'</td><td>'+z+'%</td></tr>'}});$('#score').textContent=c+'/'+res.length;$('#msg').textContent=mode==='mock'?(pass&&res.length===35?'🎉 模試判定：合格':'模試判定：不合格'):p>=60?'合格圏です':'復習して再挑戦しましょう';$('#resultTable').innerHTML=rows}
-function showCat(){show('cat')}function settings(){show('settings')}function home(){clearInterval(tick);show('home');update()}
-function stats(){show('stats');let R=0,T=0,rows='';['法令','物理化学','性質消火'].forEach(c=>{let r=0,t=0;QUESTIONS.filter(q=>q.category===c).forEach(q=>{let a=st.a[q.id];if(a){r+=a.r;t+=a.t}});R+=r;T+=t;rows+='<tr><td>'+c+'</td><td>'+r+'/'+t+'</td><td>'+(t?Math.round(r/t*100):0)+'%</td></tr>'});rows+='<tr><td><b>総合</b></td><td><b>'+R+'/'+T+'</b></td><td><b>'+(T?Math.round(R/T*100):0)+'%</b></td></tr>';$('#statsTable').innerHTML=rows;let w=Object.entries(st.a).filter(([id,a])=>a.t>=2&&a.r/a.t<.6).slice(0,10);$('#weak').innerHTML=w.length?w.map(([id,a])=>'第'+id+'問　正答率 '+Math.round(a.r/a.t*100)+'%').join('<br>'):'まだ分析データがありません'}
-function update(){touch();let n=Object.keys(st.a).length,R=0,T=0;Object.values(st.a).forEach(a=>{R+=a.r;T+=a.t});$('#summary').textContent='100問中 '+n+'問に挑戦';$('#homebar').style.width=n+'%';$('#today').textContent='今日 '+st.today+'問';$('#rate').textContent='総合正答率 '+(T?Math.round(R/T*100):0)+'%';$('#wrongInfo').textContent='間違い '+st.wrong.length+'問';$('#wrongCount').textContent=st.wrong.length+'問を復習';$('#bookCount').textContent=st.book.length+'問を保存';save()}
-function resetData(){if(confirm('履歴を削除しますか？')){localStorage.removeItem('otsu4-final');location.reload()}}function exportData(){let b=new Blob([JSON.stringify(st,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='乙4成績.json';a.click()}
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();promptEvent=e;$('#install').classList.remove('hidden')});$('#install').onclick=async()=>{if(promptEvent){promptEvent.prompt();await promptEvent.userChoice;promptEvent=null;$('#install').classList.add('hidden')}}
-if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('sw.js');prefs();update();
-</script></body></html>
+function dark(){st.dark=!st.dark;save();prefs()}
+function fontSize(){st.font=(st.font+1)%3;save();prefs()}
+function saveGoal(){let n=Math.max(1,Math.min(200,Number($('#goalInput').value)||10));st.goal=n;save();update();alert('1日の目標を保存しました')}
+function recommendList(){
+ return QUESTIONS.map(q=>{
+  let a=st.a[q.id]||{r:0,t:0};let p=a.t?a.r/a.t:0;
+  return {q,score:a.t===0?0.55:(1-p)+Math.min(a.t,5)*0.03}
+ }).sort((x,y)=>y.score-x.score).slice(0,20).map(x=>x.q)
+}
+function start(m){
+ touch();mode=m;
+ if(m==='daily')list=shuffle(QUESTIONS).slice(0,10);
+ if(m==='all')list=[...QUESTIONS];
+ if(m==='wrong'){list=QUESTIONS.filter(q=>st.wrong.includes(q.id));if(!list.length)return alert('間違い問題はありません')}
+ if(m==='book'){list=QUESTIONS.filter(q=>st.book.includes(q.id));if(!list.length)return alert('お気に入りはありません')}
+ if(m==='recommend')list=recommendList();
+ if(m==='mock')list=shuffle([...shuffle(QUESTIONS.filter(q=>q.category==='法令')).slice(0,15),...shuffle(QUESTIONS.filter(q=>q.category==='物理化学')).slice(0,10),...shuffle(QUESTIONS.filter(q=>q.category==='性質消火')).slice(0,10)]);
+ begin()
+}
+function startCat(c){mode='cat';list=shuffle(QUESTIONS.filter(q=>q.category===c));begin()}
+function begin(){pos=0;res=[];sec=mode==='mock'?3600:0;startAt=Date.now();show('quiz');timer();render()}
+function timer(){clearInterval(tick);if(mode!=='mock'){$('#timer').textContent='';return}upTimer();tick=setInterval(()=>{sec--;upTimer();if(sec<=0){clearInterval(tick);finish()}},1000)}
+function upTimer(){$('#timer').textContent=Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0')}
+function render(){
+ answered=false;let q=list[pos];$('#badge').textContent=q.category;$('#count').textContent=(pos+1)+'/'+list.length;$('#qbar').style.width=(pos/list.length*100)+'%';
+ $('#star').textContent=st.book.includes(q.id)?'★':'☆';$('#q').textContent=q.question;$('#feed').className='hidden';$('#next').classList.add('hidden');$('#choices').innerHTML='';
+ ['A','B','C','D'].forEach((x,i)=>{let b=document.createElement('button');b.className='choice';b.innerHTML='<b>'+x+'</b><span>'+q.choices[i]+'</span>';b.onclick=()=>answer(i);$('#choices').appendChild(b)})
+}
+function answer(i){
+ if(answered)return;answered=true;touch();st.today++;
+ let q=list[pos],ok=i===q.answer;res.push({cat:q.category,ok,id:q.id});st.a[q.id]??={r:0,t:0};st.a[q.id].t++;if(ok)st.a[q.id].r++;
+ if(ok)st.wrong=st.wrong.filter(x=>x!==q.id);else if(!st.wrong.includes(q.id))st.wrong.push(q.id);
+ [...$('#choices').children].forEach((b,j)=>{b.disabled=true;if(j===q.answer)b.classList.add('correct');if(j===i&&!ok)b.classList.add('wrong')});
+ $('#feed').className='explain';$('#feed').innerHTML='<b>'+(ok?'⭕ 正解':'❌ 不正解')+'</b><br>正解：'+q.choices[q.answer]+'<br>'+q.explanation;
+ $('#next').textContent=pos===list.length-1?'結果を見る':'次へ';$('#next').classList.remove('hidden');save()
+}
+function next(){pos++;pos>=list.length?finish():render()}
+function bookmark(){let id=list[pos].id;st.book=st.book.includes(id)?st.book.filter(x=>x!==id):[...st.book,id];save();$('#star').textContent=st.book.includes(id)?'★':'☆'}
+function quit(){if(confirm('中断しますか？')){recordTime();home()}}
+function recordTime(){if(startAt){st.studySeconds+=Math.max(0,Math.floor((Date.now()-startAt)/1000));startAt=0;save()}}
+function finish(){
+ clearInterval(tick);recordTime();show('result');let c=res.filter(x=>x.ok).length,p=res.length?Math.round(c/res.length*100):0,pass=true,rows='',detail={};
+ ['法令','物理化学','性質消火'].forEach(cat=>{let a=res.filter(x=>x.cat===cat);if(a.length){let r=a.filter(x=>x.ok).length,z=Math.round(r/a.length*100);detail[cat]=z;if(mode==='mock'&&z<60)pass=false;rows+='<tr><td>'+cat+'</td><td>'+r+'/'+a.length+'</td><td>'+z+'%</td></tr>'}});
+ $('#score').textContent=c+'/'+res.length;$('#msg').textContent=mode==='mock'?(pass&&res.length===35?'🎉 模試判定：合格':'模試判定：不合格'):p>=60?'合格圏です':'復習して再挑戦しましょう';$('#resultTable').innerHTML=rows;
+ if(mode==='mock'&&res.length){st.mockHistory.unshift({date:new Date().toLocaleString('ja-JP'),score:p,pass:pass&&res.length===35,detail});st.mockHistory=st.mockHistory.slice(0,50);save()}
+}
+function showCat(){show('cat')}
+function settings(){show('settings')}
+function home(){clearInterval(tick);recordTime();show('home');update()}
+function stats(){
+ show('stats');let R=0,T=0,rows='';
+ ['法令','物理化学','性質消火'].forEach(c=>{let r=0,t=0;QUESTIONS.filter(q=>q.category===c).forEach(q=>{let a=st.a[q.id];if(a){r+=a.r;t+=a.t}});R+=r;T+=t;rows+='<tr><td>'+c+'</td><td>'+r+'/'+t+'</td><td>'+(t?Math.round(r/t*100):0)+'%</td></tr>'});
+ rows+='<tr><td><b>総合</b></td><td><b>'+R+'/'+T+'</b></td><td><b>'+(T?Math.round(R/T*100):0)+'%</b></td></tr>';$('#statsTable').innerHTML=rows;
+ let w=Object.entries(st.a).filter(([id,a])=>a.t>=2&&a.r/a.t<.6).sort((a,b)=>(a[1].r/a[1].t)-(b[1].r/b[1].t)).slice(0,10);
+ $('#weak').innerHTML=w.length?w.map(([id,a])=>{let q=QUESTIONS.find(x=>x.id==id);return '第'+id+'問　'+Math.round(a.r/a.t*100)+'%　'+(q?q.question:'')}).join('<br><br>'):'まだ分析データがありません'
+}
+function flashStart(){
+ flashList=st.book.length?QUESTIONS.filter(q=>st.book.includes(q.id)):shuffle(QUESTIONS);flashPos=0;flashFlipped=false;show('flash');renderFlash()
+}
+function renderFlash(){let q=flashList[flashPos];$('#flashCount').textContent=(flashPos+1)+'/'+flashList.length;$('#flashFront').textContent=q.question;$('#flashBack').innerHTML='<b>正解：'+q.choices[q.answer]+'</b><br><br>'+q.explanation;$('#flashBack').classList.toggle('hidden',!flashFlipped)}
+function flipFlash(){flashFlipped=!flashFlipped;renderFlash()}
+function flashNext(){flashPos=(flashPos+1)%flashList.length;flashFlipped=false;renderFlash()}
+function flashPrev(){flashPos=(flashPos-1+flashList.length)%flashList.length;flashFlipped=false;renderFlash()}
+function searchPage(){show('search');$('#searchInput').value='';$('#searchResults').innerHTML='<div class="muted" style="margin-top:12px">検索語を入力してください。</div>'}
+function doSearch(){
+ let k=$('#searchInput').value.trim().toLowerCase();if(!k){$('#searchResults').innerHTML='';return}
+ let hit=QUESTIONS.filter(q=>(q.question+' '+q.choices.join(' ')+' '+q.explanation).toLowerCase().includes(k)).slice(0,30);
+ $('#searchResults').innerHTML=hit.length?hit.map(q=>'<div class="resultItem"><b>第'+q.id+'問［'+q.category+'］</b><br>'+q.question+'<div class="muted" style="margin-top:6px">正解：'+q.choices[q.answer]+'</div></div>').join(''):'<div class="muted" style="margin-top:12px">該当する問題はありません。</div>'
+}
+function mockHistory(){
+ show('history');let h=st.mockHistory||[];$('#historyList').innerHTML=h.length?h.map(x=>'<div class="resultItem"><div class="row"><b>'+(x.pass?'合格':'不合格')+'</b><span class="badge">'+x.score+'%</span></div><div class="muted">'+x.date+'</div><div class="muted" style="margin-top:5px">'+Object.entries(x.detail||{}).map(([k,v])=>k+' '+v+'%').join('／')+'</div></div>').join(''):'<div class="muted">まだ模試履歴はありません。</div>'
+}
+function update(){
+ touch();let n=Object.keys(st.a).length,R=0,T=0;Object.values(st.a).forEach(a=>{R+=a.r;T+=a.t});
+ $('#summary').textContent='100問中 '+n+'問に挑戦';$('#homebar').style.width=Math.min(100,(st.today/st.goal*100))+'%';$('#today').textContent='今日 '+st.today+'/'+st.goal+'問';
+ $('#rate').textContent=(T?Math.round(R/T*100):0)+'%';$('#streak').textContent=calcStreak()+'日';$('#minutes').textContent=Math.floor(st.studySeconds/60)+'分';
+ let best=(st.mockHistory||[]).length?Math.max(...st.mockHistory.map(x=>x.score))+'%':'-';$('#mockBest').textContent=best;
+ $('#wrongCount').textContent=st.wrong.length+'問を復習';$('#bookCount').textContent=st.book.length+'問を保存';$('#goalInput').value=st.goal;save()
+}
+function resetData(){if(confirm('履歴をすべて削除しますか？')){localStorage.removeItem('otsu4-v2');localStorage.removeItem('otsu4-final');location.reload()}}
+function exportData(){let b=new Blob([JSON.stringify(st,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='乙4_V2_成績バックアップ.json';a.click()}
+function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);st=Object.assign({},base,d);save();prefs();update();alert('成績を読み込みました')}catch(err){alert('読み込みに失敗しました')}};r.readAsText(f)}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();promptEvent=e;$('#install').classList.remove('hidden')});
+$('#install').onclick=async()=>{if(promptEvent){promptEvent.prompt();await promptEvent.userChoice;promptEvent=null;$('#install').classList.add('hidden')}};
+if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('sw.js');
+prefs();update();
+</script>
+</body></html>

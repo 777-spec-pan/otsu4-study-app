@@ -1,0 +1,11 @@
+Version2 GitHub上書き手順
+
+1. GitHubの otsu4-study-app を開く
+2. Add file → Upload files
+3. このフォルダ内の6ファイルをすべてアップロード
+4. 同名ファイルの上書きとして Commit changes
+5. Actionsで緑のチェックになるまで待つ
+6. スマホのアプリを一度完全に閉じて再度開く
+7. 古い画面のままなら、Chromeで公開URLを開き再読み込み
+
+学習履歴は同じ端末ならそのまま引き継がれます。
