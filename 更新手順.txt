@@ -1,8 +1,21 @@
-Version3 GitHub上書き手順
-1. ZIPを展開
-2. GitHubのotsu4-study-appで Add file → Upload files
-3. index.html / questions.js / manifest.webmanifest / sw.js / icon-192.png / icon-512.png をアップロード
-4. Commit changes
-5. Actionsが緑になったらスマホアプリを完全に閉じて開き直す
-6. 変わらない場合はChromeで公開URLを開き、再読み込み
-学習履歴は引き継がれます。
+Version 3.1 更新手順
+
+1. ZIPを展開します。
+2. GitHubの otsu4-study-app を開きます。
+3. Add file → Upload files を押します。
+4. 次の6ファイルをアップロードします。
+   index.html
+   questions.js
+   manifest.webmanifest
+   sw.js
+   icon-192.png
+   icon-512.png
+5. Commit changes を押します。
+6. Actionsが緑のチェックになるまで待ちます。
+7. スマホのChromeで公開URLを一度開き、再読み込みします。
+8. 30秒ほど待ってからホーム画面のアプリを完全終了し、開き直します。
+
+Version 3.1では、古いキャッシュを自動削除し、起動時に最新版を確認します。
+それでもV2のままの場合は、Androidの
+設定 → アプリ → 乙4合格 → ストレージとキャッシュ → キャッシュを削除
+を行ってください。学習履歴を残したい場合、「ストレージを消去」は押さないでください。

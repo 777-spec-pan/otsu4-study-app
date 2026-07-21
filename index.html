@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#7f1d1d">
 <link rel="manifest" href="manifest.webmanifest">
-<title>危険物乙4 合格トレーナー V3</title>
+<title>危険物乙4 合格トレーナー V3.1</title>
 <style>
 :root{--r:#b91c1c;--r2:#7f1d1d;--bg:#f5f4ef;--card:#fff;--txt:#1f2937;--mut:#6b7280;--line:#e5e7eb;--ok:#15803d;--ng:#c2410c;--gold:#d97706;--blue:#1d4ed8;--fs:16px}
 body.dark{--bg:#0f172a;--card:#1e293b;--txt:#f8fafc;--mut:#cbd5e1;--line:#334155}
@@ -32,7 +32,7 @@ button{font:inherit;border:0;border-radius:12px;padding:13px;cursor:pointer}.mod
 </style>
 </head>
 <body>
-<header><div class="top"><div><h1>危険物乙4 合格トレーナー V3</h1><div class="sub">音声・合格推定・優先出題・本番モード</div></div><div class="headBtns"><button class="icon" onclick="fontSize()">文字</button><button class="icon" onclick="dark()">◐</button></div></div></header>
+<header><div class="top"><div><h1>危険物乙4 合格トレーナー V3.1</h1><div class="sub">自動更新対応・音声・合格推定・本番モード</div></div><div class="headBtns"><button class="icon" onclick="fontSize()">文字</button><button class="icon" onclick="dark()">◐</button></div></div></header>
 <main>
 <section id="home">
  <div class="card">
@@ -141,5 +141,21 @@ function searchPage(){show('search');$('#searchInput').value='';$('#searchResult
 function mockHistory(){show('history');let h=st.mockHistory||[];$('#historyList').innerHTML=h.length?h.map(x=>'<div class="resultItem"><div class="row"><b>'+(x.pass?'合格':'不合格')+'</b><span class="badge">'+x.score+'%</span></div><div class="muted">'+x.date+'</div><div class="muted" style="margin-top:5px">'+Object.entries(x.detail||{}).map(([k,v])=>k+' '+v+'%').join('／')+'</div></div>').join(''):'<div class="muted">まだ模試履歴はありません。</div>'}
 function update(){touch();let n=Object.keys(st.a).length,R=0,T=0;Object.values(st.a).forEach(a=>{R+=a.r;T+=a.t});$('#summary').textContent='100問中 '+n+'問に挑戦';$('#homebar').style.width=Math.min(100,(st.today/st.goal*100))+'%';$('#today').textContent='今日 '+st.today+'/'+st.goal+'問';$('#rate').textContent=(T?Math.round(R/T*100):0)+'%';$('#streak').textContent=calcStreak()+'日';$('#minutes').textContent=Math.floor(st.studySeconds/60)+'分';$('#mockBest').textContent=(st.mockHistory||[]).length?Math.max(...st.mockHistory.map(x=>x.score))+'%':'-';$('#wrongCount').textContent=st.wrong.length+'問を復習';$('#bookCount').textContent=st.book.length+'問を保存';$('#goalInput').value=st.goal;$('#passEstimate').textContent=passEstimate()+'%';$('#advice').textContent=adviceText();save()}
 function resetData(){if(confirm('履歴をすべて削除しますか？')){['otsu4-v3','otsu4-v2','otsu4-final'].forEach(x=>localStorage.removeItem(x));location.reload()}} function exportData(){let b=new Blob([JSON.stringify(st,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='乙4_V3_成績バックアップ.json';a.click()} function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{st=Object.assign({},base,JSON.parse(r.result));save();prefs();update();alert('成績を読み込みました')}catch(err){alert('読み込み失敗')}};r.readAsText(f)}
-if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('sw.js');prefs();update();
+
+async function setupServiceWorker(){
+ if(!('serviceWorker' in navigator) || location.protocol==='file:') return;
+ try{
+   const reg = await navigator.serviceWorker.register('./sw.js?v=31', {updateViaCache:'none'});
+   await reg.update();
+   let refreshing=false;
+   navigator.serviceWorker.addEventListener('controllerchange',()=>{
+     if(refreshing) return;
+     refreshing=true;
+     location.reload();
+   });
+   setInterval(()=>reg.update(), 60*60*1000);
+ }catch(e){console.log('Service Worker update error',e)}
+}
+setupServiceWorker();prefs();update();
+
 </script></body></html>
