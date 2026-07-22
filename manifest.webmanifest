@@ -1,21 +1,25 @@
 {
-  "name": "危険物乙4 MASTER V5",
-  "short_name": "乙4 MASTER V5",
+  "name": "危険物乙4 予想問題集 V5.1",
+  "short_name": "乙4 V5.1",
+  "description": "危険物取扱者乙種第4類の予想問題集。全10回、各35問。",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f2ed",
-  "theme_color": "#7f1d1d",
+  "orientation": "portrait-primary",
+  "background_color": "#f7f7f5",
+  "theme_color": "#164e63",
   "icons": [
     {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
